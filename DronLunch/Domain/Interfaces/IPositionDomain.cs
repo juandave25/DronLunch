@@ -7,8 +7,8 @@ namespace DronLunch.Domain.Interfaces
 {
     public interface IPositionDomain
     {
-        void MoveForward(Position position);
-        void TurnLeft(Position position);
-        void TurnRight(Position position);
+        Position MoveForward(Position position);
+        Position TurnLeft(Position position);
+        Position TurnRight(Position position);
     }
 }

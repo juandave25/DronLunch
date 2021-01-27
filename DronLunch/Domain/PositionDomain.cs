@@ -8,7 +8,7 @@ namespace DronLunch.Domain
 {
     public class PositionDomain : IPositionDomain
     {
-        public void MoveForward(Position position)
+        public Position MoveForward(Position position)
         {
             switch (position.Direction)
             {
@@ -25,9 +25,11 @@ namespace DronLunch.Domain
                     position.Xposition--;
                     break;
             }
+
+            return position;
         }
 
-        public void TurnLeft(Position position)
+        public Position TurnLeft(Position position)
         {
             switch (position.Direction)
             {
@@ -44,9 +46,10 @@ namespace DronLunch.Domain
                     position.Direction = "SOUTH";
                     break;
             }
+            return position;
         }
 
-        public void TurnRight(Position position)
+        public Position TurnRight(Position position)
         {
             switch (position.Direction)
             {
@@ -63,6 +66,7 @@ namespace DronLunch.Domain
                     position.Direction = "NORTH";
                     break;
             }
+            return position;
         }
 
     }

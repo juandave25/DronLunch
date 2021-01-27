@@ -27,10 +27,9 @@ namespace DronLunch
             routes.ForEach((route) =>
             {
                 int cont = 0;
+                Position Position = new Position();
                 route.AssignedRoutes.ForEach((assignedRoute) =>
                 {
-                    
-                    Position Position = new Position();
                     if (cont == 0)
                     {
                         Position.Direction = "NORTH";
@@ -43,13 +42,13 @@ namespace DronLunch
                         switch (assignedRoute[index].ToString())
                         {
                             case "A":
-                                _positionDomain.MoveForward(Position);
+                               Position= _positionDomain.MoveForward(Position);
                                 break;
                             case "D":
-                                _positionDomain.TurnRight(Position);
+                                Position = _positionDomain.TurnRight(Position);
                                 break;
                             case "I":
-                                _positionDomain.TurnLeft(Position);
+                                Position = _positionDomain.TurnLeft(Position);
                                 break;
                             default:
                                 break;
@@ -59,6 +58,9 @@ namespace DronLunch
                     cont += 1;
 
                 });
+
+
+
             });
 
             Console.WriteLine("Hello World!");
