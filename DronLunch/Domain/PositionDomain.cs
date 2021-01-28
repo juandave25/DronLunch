@@ -40,10 +40,10 @@ namespace DronLunch.Domain
                     position.Direction = "EAST";
                     break;
                 case "WEST":
-                    position.Direction = "NORTH";
+                    position.Direction = "SOUTH";
                     break;
                 case "EAST":
-                    position.Direction = "SOUTH";
+                    position.Direction = "NORTH";
                     break;
             }
             return position;
@@ -60,10 +60,10 @@ namespace DronLunch.Domain
                     position.Direction = "WEST";
                     break;
                 case "WEST":
-                    position.Direction = "SOUTH";
+                    position.Direction = "NORTH";
                     break;
                 case "EAST":
-                    position.Direction = "NORTH";
+                    position.Direction = "SOUTH";
                     break;
             }
             return position;

@@ -24,47 +24,44 @@ namespace DronLunch
             _positionDomain = new PositionDomain();
             routes = _routeDomain.ReadFile(InputFileName, drone);
 
-            routes.ForEach((route) =>
+            foreach (Route route in routes)
             {
-                int cont = 0;
-                Position Position = new Position();
-                route.AssignedRoutes.ForEach((assignedRoute) =>
+                List<string> textReport = new List<string>();
+
+                dynamic Position = new Position();
+                foreach (string assignedRoute in route.AssignedRoutes)
                 {
-                    if (cont == 0)
+                    Position.Direction = "NORTH";
+                    Position.Xposition = 0;
+                    Position.Yposition = 0;
+
+                    for (int index = 0; index <= assignedRoute.ToCharArray().Length - 1; index++)
                     {
-                        Position.Direction = "NORTH";
-                        Position.Xposition = 0;
-                        Position.Yposition = 0;
-                    };
-                    for (int index=0; index < assignedRoute.Split("").Length; index++)
-                    {
-                        
                         switch (assignedRoute[index].ToString())
                         {
                             case "A":
-                               Position= _positionDomain.MoveForward(Position);
+                                Position = _positionDomain.MoveForward(Position);
                                 break;
                             case "D":
-                                Position = _positionDomain.TurnRight(Position);
+                                Position.Direction = _positionDomain.TurnRight(Position);
                                 break;
                             case "I":
-                                Position = _positionDomain.TurnLeft(Position);
+                                Position.Direction = _positionDomain.TurnLeft(Position);
                                 break;
                             default:
                                 break;
-                        } 
+                        }
                     }
 
-                    cont += 1;
+                    textReport.Add($"({Position.Xposition},{Position.Yposition}) Adress {Position.Direction}");
 
-                });
+                }
 
+                _routeDomain.CreateFile(@"D:\out01.txt", textReport);
 
+            }
 
-            });
-
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("File Generated!");
         }
-
     }
 }
