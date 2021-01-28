@@ -8,5 +8,7 @@ namespace DronLunch.Domain.Interfaces
     public interface IRouteDomain
     {
         List<Route> ReadFile(string FilePath, Drone drone);
+
+        void CreateFile(string FilePath, List<string> textReport);
     }
 }
